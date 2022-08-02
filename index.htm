@@ -8,5 +8,16 @@
 </head>
 <body>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+    <script>
+        client = new Paho.MQTT.Client("d57a0d1c39d54550b147b58411d86743.s2.eu.hivemq.cloud", 8884, "93f4fc695608");
+        client.connect({
+            onSuccess: onConnect,
+            userName: "robot", 
+            password: "P@ssW0rd!",
+            useSSL: true
+        });
+
 </body>
 </html>
