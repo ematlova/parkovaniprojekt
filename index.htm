@@ -30,16 +30,19 @@
 
         function onMessageArrived(message) {
 
-            console.log("onMessageArrived:" + message.destinationName);
-            console.log("onMessageArrived:" + message.payloadString);
-            document.getElementById("/out/parking/button/enter").innerText = message.payloadString;
-            document.getElementById("/out/parking/button/exit").innerText = message.payloadString;
+            if (message.destinationName == "/out/parking/button/enter") {
+                document.getElementById("/out/parking/button/enter").innerText = message.payloadString
+            }
+            else {
+                document.getElementById("/out/parking/button/exit").innerText = message.payloadString
+            }
+
 }
+
 
     </script> 
 
     <p id="/out/parking/button/enter"></p> 
-        <button onclick="text"
     <p id="/out/parking/button/exit"></p>  
 </body>
 </html>
