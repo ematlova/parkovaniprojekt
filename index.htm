@@ -24,6 +24,10 @@
             console.log("onConnect");
         }
 
+        message = new Paho.MQTT.Message("Ahoooj");
+            message.destinationName = "/row/15/text";
+            client.send(message);
+
     </script> 
 
 </body>
