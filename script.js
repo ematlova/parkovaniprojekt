@@ -8,7 +8,6 @@ client.connect({
 
 
 function onConnect() {
-    // Once a connection has been made, make a subscription and send a message.
     console.log("onConnect");
 
     client.onMessageArrived = onMessageArrived;
