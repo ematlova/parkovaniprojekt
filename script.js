@@ -6,6 +6,7 @@ client.connect({
     useSSL: true
 });
 
+// Tláčítka
 
 function onConnect() {
     console.log("onConnect");
@@ -21,14 +22,38 @@ function onMessageArrived(message) {
 
     if (message.destinationName == "/out/parking/button/enter") {
         counter -= 1
-        document.getElementById("vjezd").innerText = counter
+        document.getElementById("vjezd").innerText = counter.toString().padStart(4, "0")
+        otevriZavoru()
+        
     }
     else {
         counter += 1 
-        document.getElementById("vjezd").innerText = counter
+        document.getElementById("vjezd").innerText = counter.toString().padStart(4, "0")
     }
 
+    sendMessage()
 
-    console.log (counter)
+    console.log (counter) 
+
+}
+// Displej
+function sendMessage(){ 
+    message = new Paho.MQTT.Message(document.getElementById("vjezd").textContent);
+    message.destinationName = "/in/parking/display";
+    client.send(message);
 }
 
+// závory
+
+ 
+function otevriZavoru(){ 
+    let message = new Paho.MQTT.Message("1");
+    message.destinationName = "/in/parking/gate/enter";
+    client.send(message);
+    setTimeout(function(){
+       let message = new Paho.MQTT.Message("0");
+        message.destinationName = "/in/parking/gate/enter";
+        client.send(message);
+
+    }, 1000,)
+}
