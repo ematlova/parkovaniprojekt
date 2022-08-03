@@ -6,6 +6,7 @@ client.connect({
     useSSL: true
 });
 
+
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("onConnect");
@@ -15,13 +16,18 @@ function onConnect() {
     client.subscribe("/out/parking/button/exit");
 }
 
+let counter = 20 
+
 function onMessageArrived(message) {
 
     if (message.destinationName == "/out/parking/button/enter") {
         document.getElementById("/out/parking/button/enter").innerText = message.payloadString
+        counter -= 1
     }
     else {
         document.getElementById("/out/parking/button/exit").innerText = message.payloadString
+        counter += 1 
     }
-
+    console.log (counter)
 }
+
