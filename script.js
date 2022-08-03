@@ -21,18 +21,14 @@ let counter = 20
 function onMessageArrived(message) {
 
     if (message.destinationName == "/out/parking/button/enter") {
-        document.getElementById("/out/parking/button/enter").innerText = message.payloadString
         counter -= 1
+        document.getElementById("vjezd").innerText = counter
     }
     else {
-        document.getElementById("/out/parking/button/exit").innerText = message.payloadString
         counter += 1 
+        document.getElementById("vjezd").innerText = counter
     }
 
-    let vjezd = ["/out/parking/button/enter" , "/out/parking/button/exit"]
-
-    document.getElementById("/out/parking/button/enter").innerText = counter
-    document.getElementById("/out/parking/button/exit").innerText = counter
 
     console.log (counter)
 }
