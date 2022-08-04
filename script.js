@@ -29,6 +29,7 @@ function onMessageArrived(message) {
     else {
         counter += 1 
         document.getElementById("vjezd").innerText = counter.toString().padStart(4, "0")
+        zavriZavoru()
     }
 
     sendMessage()
@@ -57,3 +58,17 @@ function otevriZavoru(){
 
     }, 1000,)
 }
+
+function zavriZavoru(){ 
+    let message = new Paho.MQTT.Message("1");
+    message.destinationName = "/in/parking/gate/exit";
+    client.send(message);
+    setTimeout(function(){
+       let message = new Paho.MQTT.Message("0");
+        message.destinationName = "/in/parking/gate/exit";
+        client.send(message);
+
+    }, 1000,)
+}
+
+
